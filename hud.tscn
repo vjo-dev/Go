@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6w7e8yd7k3gi"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_myi7r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iubgr"]
+bg_color = Color(0, 0, 0, 0.662745)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_myi7r")
+
+[node name="HudPanel" type="Panel" parent="."]
+offset_left = 90.0
+offset_top = 90.0
+offset_right = 390.0
+offset_bottom = 390.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iubgr")
+
+[node name="Message" type="Label" parent="."]
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 380.0
+offset_bottom = 140.0
+text = "Player 1 won the game"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 200.0
+offset_top = 332.0
+offset_right = 290.0
+offset_bottom = 363.0
+text = "New game"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

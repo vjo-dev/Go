@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://csy6uq1f1xr1a"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_er66o"]
+[ext_resource type="PackedScene" uid="uid://bwbtq0aw3xynq" path="res://black.tscn" id="2_0ur55"]
+[ext_resource type="PackedScene" uid="uid://c0m3x4aqxv75l" path="res://white.tscn" id="3_iaxw4"]
+[ext_resource type="PackedScene" uid="uid://d4eyqfdbraixg" path="res://marker.tscn" id="4_jlpj6"]
+[ext_resource type="Texture2D" uid="uid://bi3g8tv8br1e1" path="res://assets/background.png" id="4_octux"]
+[ext_resource type="Texture2D" uid="uid://dmnlwhf2bwhbg" path="res://assets/grid_9.png" id="5_s0bfe"]
+[ext_resource type="PackedScene" uid="uid://b6w7e8yd7k3gi" path="res://hud.tscn" id="6_dpkl8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0gm5m"]
+bg_color = Color(0.843137, 0.843137, 0.843137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_np0xx"]
+draw_center = false
+
+[node name="Main" type="Node"]
+script = ExtResource("1_er66o")
+black_stone_scene = ExtResource("2_0ur55")
+white_stone_scene = ExtResource("3_iaxw4")
+last_play_scene = ExtResource("4_jlpj6")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(240, 240)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_octux")
+
+[node name="Grid" type="Sprite2D" parent="."]
+position = Vector2(240, 240)
+scale = Vector2(0.205, 0.205)
+texture = ExtResource("5_s0bfe")
+
+[node name="SidePanel" type="Panel" parent="."]
+offset_left = 480.0
+offset_right = 720.0
+offset_bottom = 480.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0gm5m")
+
+[node name="PassButton" type="Button" parent="SidePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 180.0
+offset_right = 60.0
+offset_bottom = 220.0
+grow_horizontal = 2
+text = "Pass"
+
+[node name="ResignButton" type="Button" parent="SidePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Resign"
+
+[node name="PlayerPanel" type="Panel" parent="."]
+offset_left = 637.0
+offset_top = 15.0
+offset_right = 690.0
+offset_bottom = 68.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_np0xx")
+
+[node name="PlayerLabel" type="Label" parent="."]
+offset_left = 508.0
+offset_top = 35.0
+offset_right = 618.0
+offset_bottom = 61.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Next player :"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HUD" parent="." instance=ExtResource("6_dpkl8")]
+process_mode = 2
+
+[connection signal="pressed" from="SidePanel/PassButton" to="." method="_on_pass_button_pressed"]
+[connection signal="pressed" from="SidePanel/ResignButton" to="." method="_on_resign_button_pressed"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]

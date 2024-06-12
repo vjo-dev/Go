@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk07rruyt1tn2"]
+
+[ext_resource type="Texture2D" uid="uid://c4xu68b7gdaam" path="res://assets/freedom_black.png" id="1_i14ec"]
+
+[node name="BlackFreedom" type="Sprite2D" groups=["black_freedoms"]]
+scale = Vector2(0.203, 0.203)
+texture = ExtResource("1_i14ec")

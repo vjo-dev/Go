@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0m3x4aqxv75l"]
+
+[ext_resource type="Texture2D" uid="uid://du75dm2jv52or" path="res://assets/stone_white.png" id="1_pmjtj"]
+
+[node name="White" type="Sprite2D" groups=["whites"]]
+scale = Vector2(0.203, 0.203)
+texture = ExtResource("1_pmjtj")
